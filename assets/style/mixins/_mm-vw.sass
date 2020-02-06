@@ -1,0 +1,8 @@
+@mixin mm-vw($attr, $value, $min, $max)
+  #{$attr}: #{$value}vw
+
+  @media screen and (min-width: $max)
+    #{$attr}: ($value/100) * $max
+
+  @media screen and (max-width: $min)
+    #{$attr}: ($value/100) * $min
