@@ -1,18 +1,18 @@
 <template lang='pug'>
   .background
-    lines
-    squares
+    s-lines
+    s-squares
 </template>
 
 <script>
-import Lines from '@/components/svg/lines'
-import Squares from '@/components/svg/squares'
+import SLines from '@/components/svg/s-lines'
+import SSquares from '@/components/svg/s-squares'
 
 export default {
-  name: 'Background',
+  name: 'OBackground',
   components: {
-    Lines,
-    Squares,
+    SLines,
+    SSquares,
   },
 }
 </script>
@@ -25,5 +25,5 @@ export default {
   width: 100vw
   height: 100vh
   position: absolute
-  background-color: #003f5c
+  background-color: $regal-blue
 </style>

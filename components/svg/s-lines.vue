@@ -83,7 +83,7 @@
 
 <script>
 export default {
-  name: 'Lines',
+  name: 'SLines',
 }
 </script>
 
@@ -91,7 +91,12 @@ export default {
 .lines
   top: 0
   left: 0
-  width: 133vw
-  height: 100vh
+  z-index: -3
+  width: 100vw
+  height: auto
   position: absolute
+
+  @include laptop
+    width: 150vw
+    height: 100vh
 </style>

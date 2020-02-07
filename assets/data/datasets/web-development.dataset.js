@@ -3,15 +3,15 @@ export default {
     return {
       tabs: [
         {
-          title: '- Frameworks Js -',
+          name: '- Frameworks Js -',
           paragraph: 'Paragraph 1',
         },
         {
-          title: '- Node.Js -',
+          name: '- Node.Js -',
           paragraph: 'Paragraph 2',
         },
         {
-          title: '- Atomic Design -',
+          name: '- Atomic Design -',
           paragraph: 'Paragraph 3',
         },
       ],

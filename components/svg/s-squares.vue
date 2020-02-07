@@ -183,22 +183,36 @@
 
 <script>
 export default {
-  name: 'Squares',
+  name: 'SSquares',
 }
 </script>
 
 <style lang='sass'>
 .squares
-  top: 0
   left: 0
-  top: -100vh
-  width: 133vw
-  height: 300vh
+  z-index: -4
+  width: 100vw
+  top: -25vh
+  height: 75vh
   position: absolute
-  // animation: rotating 250s linear infinite
+  // animation: rotating 200s linear infinite
 
-.square
-  transform-box: fill-box
-  transform-origin: center
-  // animation: rotating 15s linear infinite
+  @include tablet
+    top: -25vh * 2
+    height: 75vh * 2
+
+  @include laptop
+    top: -100vh
+    width: 133vw
+    height: 300vh
+
+// .square
+//   transform-box: fill-box
+//   transform-origin: center
+
+//   &:nth-child(even)
+//     animation: rotating 5s linear infinite
+
+//   &:nth-child(odd)
+//     animation: rotating 10s linear infinite
 </style>
