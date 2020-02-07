@@ -1,16 +1,17 @@
 <template lang='pug'>
   .background
-    img.background_lines(src='@/static/images/svg/lines.svg')
-    //- img.background_squares(src='@/static/images/svg/squares.svg')
+    lines
     squares
 </template>
 
 <script>
-import Squares from '@/components/molecules/squares'
+import Lines from '@/components/svg/lines'
+import Squares from '@/components/svg/squares'
 
 export default {
   name: 'Background',
   components: {
+    Lines,
     Squares,
   },
 }
@@ -25,11 +26,4 @@ export default {
   height: 100vh
   position: absolute
   background-color: #003f5c
-
-  &_lines
-    top: 0
-    left: 0
-    width: 133vw
-    height: 100vh
-    position: absolute
 </style>

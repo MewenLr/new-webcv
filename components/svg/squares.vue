@@ -188,12 +188,6 @@ export default {
 </script>
 
 <style lang='sass'>
-@keyframes onself
-  from
-    transform: rotate(0deg)
-  to
-    transform: rotate(360deg)
-
 .squares
   top: 0
   left: 0
@@ -206,5 +200,5 @@ export default {
 .square
   transform-box: fill-box
   transform-origin: center
-  // animation: onself 15s linear infinite
+  // animation: rotating 15s linear infinite
 </style>
