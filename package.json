@@ -15,11 +15,12 @@
     "lint:trans:fix": "eslint --ext .json --format node_modules/eslint-plugin-i18n-json/formatter.js ./assets/data/lang/ --fix"
   },
   "dependencies": {
-    "baffle": "^0.3.6",
-    "nuxt": "^2.0.0",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/style-resources": "^1.0.0",
-    "nuxt-i18n": "^6.3.0"
+    "baffle": "^0.3.6",
+    "nuxt": "^2.0.0",
+    "nuxt-i18n": "^6.3.0",
+    "vue-typed-js": "^0.1.2"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",

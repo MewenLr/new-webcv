@@ -190,16 +190,16 @@ export default {
 <style lang='sass'>
 .squares
   left: 0
+  top: -35vh
   z-index: -4
   width: 100vw
-  top: -25vh
-  height: 75vh
+  height: 95vh
   position: absolute
   // animation: rotating 200s linear infinite
 
   @include tablet
-    top: -25vh * 2
-    height: 75vh * 2
+    top: -35vh * 2
+    height: 95vh * 2
 
   @include laptop
     top: -100vh

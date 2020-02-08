@@ -21,7 +21,7 @@ export default {
 <style lang='sass'>
 .illustration
   width: 100vw
-  height: 25vh
+  height: 35vh
   display: flex
   align-items: center
   justify-content: center
@@ -31,7 +31,10 @@ export default {
     height: auto
 
   img
-    height: 100%
+    height: 90%
+
+    @include tablet
+      height: 100%
 
     @include laptop
       width: 100%

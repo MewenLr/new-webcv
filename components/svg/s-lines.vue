@@ -90,13 +90,16 @@ export default {
 <style lang='sass'>
 .lines
   top: 0
-  left: 0
+  left: 50%
   z-index: -3
-  width: 100vw
-  height: auto
+  width: auto
+  height: 35vh
   position: absolute
+  transform: translateX(-50%)
 
   @include laptop
+    left: 0
     width: 150vw
     height: 100vh
+    transform: none
 </style>

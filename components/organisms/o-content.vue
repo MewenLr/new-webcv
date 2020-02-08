@@ -1,16 +1,18 @@
 <template lang="pug">
   .content
-    h1.content_title {{ title }}
-    .content_tabs
-      h2.content_tabs_tab(
-        v-for="(tab, i) in tabs"
-        :key="i"
-      ) {{ tab.name }}
+    .content_head
+      h1.content_head_title {{ title }}
+    m-tabs.content_tabs(:tabs="tabs")
 </template>
 
 <script>
+import MTabs from '@/components/molecules/m-tabs'
+
 export default {
   name: 'OContent',
+  components: {
+    MTabs,
+  },
   props: {
     tabs: {
       type: Array,
@@ -26,7 +28,7 @@ export default {
 
 <style lang='sass'>
 .content
-  height: 75vh
+  height: 65vh
   width: 100vw
   display: flex
   align-items: center
@@ -36,20 +38,23 @@ export default {
     width: 50vw
     height: auto
 
-  &_title
-    margin: 5vh 0 3vh 0
-    font-family: Blanka
-    @include mm-vw(font-size, 5, $tablet, $desktop)
+  &_head
+    display: flex
+    text-align: center
+    font-family: Blanka, roboto
+    flex-direction: column
+    justify-content: flex-end
 
     @include laptop
-      margin: 37vh 0 5vh 0
+      height: 45vh
 
-    @include widescreen
+    &_title
+      margin-top: 4vh
       @include mm-vw(font-size, 7, $tablet, $desktop)
 
-  &_tabs
-    text-align: center
+      @include tablet
+        margin-top: 5vh
 
-    &_tab
-      margin-bottom: 2vh
+      @include widescreen
+        margin-bottom: 2vh
 </style>
