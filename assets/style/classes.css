@@ -1,0 +1,8 @@
+.caret {
+  border-right: .7rem solid;
+  animation: caret 1.5s steps(1) infinite;
+}
+
+.disappear {
+  display: none;
+}

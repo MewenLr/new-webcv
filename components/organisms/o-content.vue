@@ -41,9 +41,9 @@ export default {
   &_head
     display: flex
     text-align: center
-    font-family: Blanka, roboto
     flex-direction: column
     justify-content: flex-end
+    font-family: Blanka, roboto
 
     @include laptop
       height: 45vh

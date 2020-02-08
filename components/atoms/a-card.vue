@@ -1,19 +1,17 @@
 <template lang="pug">
   .card
-    //- p.card_text Hello world my name is mewen i m a front end developper
-    <vue-typed-js :strings="['This is text ^1000 which gets paused for 1 second', 'wow, interesting']">
-      <h2 class="typing"></h2>
-    </vue-typed-js>
+    p.card_text(ref="cardText")
 </template>
 
 <script>
-import Vue from 'vue'
-import { VueTypedJs } from 'vue-typed-js'
-
-Vue.use(VueTypedJs)
+import TypeWriter from '@/assets/scripts/modules/type-writer'
 
 export default {
   name: 'ACard',
+  mixins: [TypeWriter],
+  mounted () {
+    this.typeWriter(this.$refs.cardText, 'Hello world my name is mewen i m a front end developper')
+  },
 }
 </script>
 

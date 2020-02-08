@@ -1,4 +1,4 @@
-import i18n from './assets/scripts/plugins/i18n'
+import i18n from './assets/scripts/modules/i18n'
 
 export default {
   mode: 'universal',
@@ -16,6 +16,8 @@ export default {
   },
   loading: { color: '#fff' },
   css: [
+    '@/assets/style/main.css',
+    '@/assets/style/classes.css',
   ],
   styleResources: {
     sass: [
