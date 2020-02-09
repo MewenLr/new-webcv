@@ -1,6 +1,6 @@
-<template lang="pug">
+<template lang='pug'>
   .card
-    p.card_text(ref="cardText")
+    p.card_text(ref='cardText')
 </template>
 
 <script>
@@ -9,8 +9,17 @@ import TypeWriter from '@/assets/scripts/modules/type-writer'
 export default {
   name: 'ACard',
   mixins: [TypeWriter],
+  props: {
+    visible: { type: Boolean, required: true },
+    paragraph: { type: String, required: true },
+  },
+  watch: {
+    visible (newVal) {
+      const self = this
+      if (newVal) self.typeWriter(self.$refs.cardText, self.paragraph)
+    },
+  },
   mounted () {
-    this.typeWriter(this.$refs.cardText, 'Hello world my name is mewen i m a front end developper')
   },
 }
 </script>
@@ -20,6 +29,7 @@ export default {
   width: 80%
   height: 30vh
   border-radius: 5px
+  margin: 2vh 0 2vh 0
   background: rgba(0,0,0,0.5)
 
   &_text

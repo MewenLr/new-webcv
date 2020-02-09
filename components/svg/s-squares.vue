@@ -195,7 +195,7 @@ export default {
   width: 100vw
   height: 95vh
   position: absolute
-  // animation: rotating 200s linear infinite
+  // animation: rotating 200s linear infinite reverse
 
   @include tablet
     top: -35vh * 2
@@ -206,13 +206,13 @@ export default {
     width: 133vw
     height: 300vh
 
-// .square
-//   transform-box: fill-box
-//   transform-origin: center
+.square
+  transform-box: fill-box
+  transform-origin: center
 
-//   &:nth-child(even)
-//     animation: rotating 5s linear infinite
+  // &:nth-child(even)
+  //   animation: rotating 5s linear infinite
 
-//   &:nth-child(odd)
-//     animation: rotating 10s linear infinite
+  // &:nth-child(odd)
+  //   animation: rotating 10s linear infinite
 </style>

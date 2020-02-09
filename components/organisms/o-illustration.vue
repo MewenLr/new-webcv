@@ -6,15 +6,13 @@
 <script>
 import OContent from '@/components/organisms/o-content'
 import OBackground from '@/components/organisms/o-background'
-import Dataset from '@/assets/data/datasets/web-development.dataset'
 
 export default {
-  name: 'WebDevelopment',
+  name: 'OIllustration',
   components: {
     OContent,
     OBackground,
   },
-  mixins: [Dataset],
 }
 </script>
 

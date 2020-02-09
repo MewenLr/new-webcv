@@ -1,26 +1,38 @@
-<template lang="pug">
+<template lang='pug'>
   .content
     .content_head
       h1.content_head_title {{ title }}
-    m-tabs.content_tabs(:tabs="tabs")
+    .content_tabs
+      m-tab.content_tabs_tab(
+        v-for="(tab, i) in tabs"
+        :key="tab.name"
+        :index="i"
+        :tab="tab"
+        :indexActive="indexActive"
+        @tabActive="setIndexActive"
+      )
 </template>
 
 <script>
-import MTabs from '@/components/molecules/m-tabs'
+import MTab from '@/components/molecules/m-tab'
 
 export default {
   name: 'OContent',
   components: {
-    MTabs,
+    MTab,
   },
   props: {
-    tabs: {
-      type: Array,
-      required: true,
-    },
-    title: {
-      type: String,
-      required: true,
+    tabs: { type: Array, required: true },
+    title: { type: String, required: true },
+  },
+  data () {
+    return {
+      indexActive: undefined,
+    }
+  },
+  methods: {
+    setIndexActive (index) {
+      this.indexActive = index
     },
   },
 }
@@ -49,12 +61,20 @@ export default {
       height: 45vh
 
     &_title
-      margin-top: 4vh
+      margin: 4vh 0 1vh 0
       @include mm-vw(font-size, 7, $tablet, $desktop)
 
-      @include tablet
-        margin-top: 5vh
+      @include laptop
+        margin: 0 0 2vh 0
+        @include mm-vw(font-size, 6, $tablet, $desktop)
 
       @include widescreen
-        margin-bottom: 2vh
+        @include mm-vw(font-size, 7, $tablet, $desktop)
+
+      &::first-letter
+        color: $aqua-blue
+        // text-shadow: 2px 2px 15px $aqua-blue
+
+  &_tabs
+    width: 100%
 </style>
