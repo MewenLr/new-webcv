@@ -1,9 +1,8 @@
 <template lang='pug'>
   .tab
-    h2.tab_title(
-      v-show="showTab"
-      @click="activateTab"
-    ) {{ tab.name }}
+    .tab_head(v-show="showTab")
+      h2.tab_head_title(@click="activateTab")
+        | {{ tab.name }}
     a-card.tab_card(
       v-show="cardVisible"
       :visible="cardVisible"
@@ -44,21 +43,6 @@ export default {
 </script>
 
 <style lang='sass'>
-@keyframes slide-left
-  0%
-    left: 0
-    opacity: 1
-  100%
-    left: -20%
-    opacity: 0
-@keyframes slide-right
-  0%
-    right: 0
-    opacity: 1
-  100%
-    right: -20%
-    opacity: 0
-
 .tab
   $self: &
   display: flex
@@ -66,23 +50,75 @@ export default {
   flex-direction: column
   transition: all ease-in-out 2s
 
-  &_title
+  &_head
+    display: flex
     cursor: pointer
     margin: 3vh 0 0 0
-    // position: relative
+    position: relative
+    align-items: center
+    justify-content: center
     @include mm-vw(font-size, 5, $tablet, $desktop)
 
     @include laptop
       @include mm-vw(font-size, 4, $tablet, $desktop)
 
     &::before, &::after
+      opacity: 1
       content: '-'
-      position: relative
-      @include mm-vw(margin-left, 2, $tablet, $desktop)
-      @include mm-vw(margin-right, 2, $tablet, $desktop)
+      position: absolute
+      transition: all ease-in-out .5s
 
-    &:hover::before
-      animation: slide-left .2s ease-in-out forwards
-    &:hover::after
-      animation: slide-right .2s ease-in-out forwards
+    &::before
+      left: -2vw
+
+    &::after
+      right: -2vw
+
+    &:hover
+
+      &::before, &::after
+        opacity: 0
+        transition: all ease-in-out .5s
+
+      &::before
+        left: -20%
+
+      &::after
+        right: -20%
+
+    &_title
+      padding: 1vh 2vh
+      position: relative
+      border: 2px solid transparent
+      transition: all ease-in-out .5s
+      @include mm-vw(font-size, 5, $tablet, $desktop)
+
+      @include laptop
+        @include mm-vw(font-size, 4, $tablet, $desktop)
+
+      &::before, &::after
+        width: 0
+        height: 0
+        content: ''
+        position: absolute
+        background: transparent
+        border: 2px solid transparent
+
+      &::before
+        top: -2px
+        left: -2px
+
+      &::after
+        bottom: -2px
+        right: -2px
+
+      &:hover
+        border: 2px solid $aqua-blue
+        transition: all ease-in-out 2s
+
+        &::before
+          animation: border-top-right 1s linear forwards
+
+        &::after
+          animation: border-bottom-left 1s linear forwards
 </style>
