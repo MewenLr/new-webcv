@@ -10,16 +10,14 @@ export default {
   name: 'ACard',
   mixins: [TypeWriter],
   props: {
-    visible: { type: Boolean, required: true },
+    typeWriterOn: { type: Boolean, required: true },
     paragraph: { type: String, required: true },
   },
   watch: {
-    visible (newVal) {
+    typeWriterOn (newVal) {
       const self = this
       if (newVal) self.typeWriter(self.$refs.cardText, self.paragraph)
     },
-  },
-  mounted () {
   },
 }
 </script>

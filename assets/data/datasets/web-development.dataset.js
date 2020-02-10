@@ -7,7 +7,7 @@ export default {
           paragraph: 'Paragraph 1',
         },
         {
-          name: 'Node.Js',
+          name: 'Node.js',
           paragraph: 'Paragraph 2',
         },
         {

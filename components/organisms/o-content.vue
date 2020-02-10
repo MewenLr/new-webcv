@@ -6,10 +6,10 @@
       m-tab.content_tabs_tab(
         v-for="(tab, i) in tabs"
         :key="tab.name"
-        :index="i"
         :tab="tab"
+        :index="i"
         :indexActive="indexActive"
-        @tabActive="setIndexActive"
+        @clickTab="setIndexActive"
       )
 </template>
 

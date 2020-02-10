@@ -1,22 +1,30 @@
 <template lang='pug'>
   .tab
-    .tab_head(v-show="showTab")
-      h2.tab_head_title(@click="activateTab")
-        | {{ tab.name }}
+    .tab_head(
+      v-show="showSubtitle"
+      :class="{'tab_head--active': tabActive }"
+      @click="clickTab"
+    )
+      a-subtitle.tab_head_subtitle(
+        :name="tab.name"
+        :active="tabActive"
+      )
     a-card.tab_card(
-      v-show="cardVisible"
-      :visible="cardVisible"
+      v-show="tabActive"
       :paragraph="tab.paragraph"
+      :type-writer-on="tabActive"
     )
 </template>
 
 <script>
 import ACard from '@/components/atoms/a-card'
+import ASubtitle from '@/components/atoms/a-subtitle'
 
 export default {
   name: 'MTab',
   components: {
     ACard,
+    ASubtitle,
   },
   props: {
     tab: { type: Object, required: true },
@@ -25,18 +33,18 @@ export default {
   },
   data () {
     return {
-      cardVisible: false,
+      tabActive: false,
     }
   },
   computed: {
-    showTab () {
+    showSubtitle () {
       return this.indexActive === undefined ? true : (this.indexActive === this.index)
     },
   },
   methods: {
-    activateTab () {
-      this.cardVisible = !this.cardVisible
-      this.cardVisible ? this.$emit('tabActive', this.index) : this.$emit('tabActive', undefined)
+    clickTab () {
+      this.tabActive = !this.tabActive
+      this.tabActive ? this.$emit('clickTab', this.index) : this.$emit('clickTab', undefined)
     },
   },
 }
@@ -56,7 +64,10 @@ export default {
     margin: 3vh 0 0 0
     position: relative
     align-items: center
+    transform: scale(0.95)
     justify-content: center
+    background-position: center
+    transition: transform ease-in-out 0.5s, background .3s
     @include mm-vw(font-size, 5, $tablet, $desktop)
 
     @include laptop
@@ -66,6 +77,7 @@ export default {
       opacity: 1
       content: '-'
       position: absolute
+      pointer-events: none
       transition: all ease-in-out .5s
 
     &::before
@@ -75,10 +87,12 @@ export default {
       right: -2vw
 
     &:hover
+      transform: scale(1)
+      background: transparent radial-gradient(circle, transparent 1%, rgba($aqua-blue, 0.1) 1%) center/15000%
 
       &::before, &::after
         opacity: 0
-        transition: all ease-in-out .5s
+        transition: all ease-in-out .3s
 
       &::before
         left: -20%
@@ -86,39 +100,14 @@ export default {
       &::after
         right: -20%
 
-    &_title
-      padding: 1vh 2vh
-      position: relative
-      border: 2px solid transparent
-      transition: all ease-in-out .5s
-      @include mm-vw(font-size, 5, $tablet, $desktop)
+    &:active
+      background-size: 100%
+      transition: background 0s
+      background-color: rgba($aqua-blue, 0.5)
 
-      @include laptop
-        @include mm-vw(font-size, 4, $tablet, $desktop)
+    &--active
+      transform: scale(1)
 
       &::before, &::after
-        width: 0
-        height: 0
-        content: ''
-        position: absolute
-        background: transparent
-        border: 2px solid transparent
-
-      &::before
-        top: -2px
-        left: -2px
-
-      &::after
-        bottom: -2px
-        right: -2px
-
-      &:hover
-        border: 2px solid $aqua-blue
-        transition: all ease-in-out 2s
-
-        &::before
-          animation: border-top-right 1s linear forwards
-
-        &::after
-          animation: border-bottom-left 1s linear forwards
+        display: none
 </style>
