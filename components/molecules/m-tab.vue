@@ -1,16 +1,14 @@
 <template lang='pug'>
-  .tab
-    .tab_head(
-      v-show="showSubtitle"
-      :class="{'tab_head--active': tabActive }"
-      @click="clickTab"
-    )
+  .tab(:class=`{
+    'tab--active': tabActive,
+    'tab--disactive': tabDisactive,
+  }`)
+    .tab_head(@click="clickTab")
       a-subtitle.tab_head_subtitle(
         :name="tab.name"
         :active="tabActive"
       )
     a-card.tab_card(
-      v-show="tabActive"
       :paragraph="tab.paragraph"
       :type-writer-on="tabActive"
     )
@@ -37,8 +35,11 @@ export default {
     }
   },
   computed: {
-    showSubtitle () {
-      return this.indexActive === undefined ? true : (this.indexActive === this.index)
+    // showSubtitle () {
+    //   return this.indexActive === undefined ? true : (this.indexActive === this.index)
+    // },
+    tabDisactive () {
+      return this.indexActive !== undefined && !this.tabActive
     },
   },
   methods: {
@@ -54,9 +55,10 @@ export default {
 .tab
   $self: &
   display: flex
+  max-height: 20vh
   align-items: center
   flex-direction: column
-  transition: all ease-in-out 2s
+  transition: all ease-in-out .5s
 
   &_head
     display: flex
@@ -67,7 +69,7 @@ export default {
     transform: scale(0.95)
     justify-content: center
     background-position: center
-    transition: transform ease-in-out 0.5s, background .3s
+    transition: transform ease-in-out .5s, background .3s
     @include mm-vw(font-size, 5, $tablet, $desktop)
 
     @include laptop
@@ -105,9 +107,36 @@ export default {
       transition: background 0s
       background-color: rgba($aqua-blue, 0.5)
 
-    &--active
-      transform: scale(1)
+  &--active
+    // max-height: 100%
+    animation: test .5s linear .2s forwards
 
-      &::before, &::after
-        display: none
+    #{ $self }
+
+      &_head
+        transform: scale(1)
+
+        &::before, &::after
+          display: none
+
+      &_card
+        animation: card-in .5s linear .5s forwards
+
+  &--disactive
+    max-height: 0
+    pointer-events: none
+    color: transparent
+
+@keyframes test
+  0%
+  100%
+    max-height: 100%
+
+@keyframes card-in
+  0%
+  100%
+    height: 30vh
+    margin: 2vh 0
+    visibility: visible
+    background: rgba($black,0.5)
 </style>

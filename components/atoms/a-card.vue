@@ -10,13 +10,13 @@ export default {
   name: 'ACard',
   mixins: [TypeWriter],
   props: {
-    typeWriterOn: { type: Boolean, required: true },
     paragraph: { type: String, required: true },
+    typeWriterOn: { type: Boolean, required: true },
   },
   watch: {
     typeWriterOn (newVal) {
-      const self = this
-      if (newVal) self.typeWriter(self.$refs.cardText, self.paragraph)
+      if (newVal) setTimeout(() => this.typeWriter(this.$refs.cardText, this.paragraph), 1000)
+      if (!newVal) this.$refs.cardText.innerHTML = ''
     },
   },
 }
@@ -25,13 +25,27 @@ export default {
 <style lang='sass'>
 .card
   width: 80%
-  height: 30vh
+  // height: 30vh
+
+  height: 0
+  margin: 0
+  visibility: hidden
+
   border-radius: 5px
-  margin: 2vh 0 2vh 0
-  background: rgba(0,0,0,0.5)
+  // margin: 2vh 0
+  background: rgba($black,0)
+  animation: card-out .5s linear forwards
 
   &_text
     padding: 15px 20px
     font-family: monospace
     @include mm-vw(font-size, 2, $laptop, $desktop)
+
+@keyframes card-out
+  0%
+  100%
+    height: 0
+    margin: 0
+    visibility: hidden
+    background: rgba($black,0)
 </style>

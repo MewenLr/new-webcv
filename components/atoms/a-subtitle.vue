@@ -47,13 +47,13 @@ export default {
 
     &:hover
       border: 2px solid $aqua-blue
-      transition: all ease-in-out 1.5s
+      transition: border ease-in-out 1.5s
 
       &::before
-        animation: border-top-right 1s linear forwards
+        animation: border-top-right .5s linear forwards
 
       &::after
-        animation: border-bottom-left 1s linear forwards
+        animation: border-bottom-left .5s linear forwards
 
   &--active
 
