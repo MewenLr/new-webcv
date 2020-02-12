@@ -21,7 +21,7 @@ export default {
   padding: 1vh 2vh
   position: relative
   border: 2px solid transparent
-  transition: all ease-in-out .5s
+  transition: all .5s ease-in-out
   @include mm-vw(font-size, 5, $tablet, $desktop)
 
   @include laptop
@@ -47,7 +47,7 @@ export default {
 
     &:hover
       border: 2px solid $aqua-blue
-      transition: border ease-in-out 1.5s
+      transition: border 1.5s ease-in-out
 
       &::before
         animation: border-top-right .5s linear forwards

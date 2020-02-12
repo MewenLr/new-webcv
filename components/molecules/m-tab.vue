@@ -10,7 +10,7 @@
       )
     a-card.tab_card(
       :paragraph="tab.paragraph"
-      :type-writer-on="tabActive"
+      :active="tabActive"
     )
 </template>
 
@@ -35,9 +35,6 @@ export default {
     }
   },
   computed: {
-    // showSubtitle () {
-    //   return this.indexActive === undefined ? true : (this.indexActive === this.index)
-    // },
     tabDisactive () {
       return this.indexActive !== undefined && !this.tabActive
     },
@@ -54,22 +51,22 @@ export default {
 <style lang='sass'>
 .tab
   $self: &
+  opacity: 1
   display: flex
   max-height: 20vh
   align-items: center
   flex-direction: column
-  transition: all ease-in-out .5s
+  transition: opacity .2s ease-in-out .3s, max-height .3s ease-in-out
 
   &_head
     display: flex
     cursor: pointer
-    margin: 3vh 0 0 0
     position: relative
     align-items: center
     transform: scale(0.95)
     justify-content: center
     background-position: center
-    transition: transform ease-in-out .5s, background .3s
+    transition: transform .5s ease-in-out, background .3s
     @include mm-vw(font-size, 5, $tablet, $desktop)
 
     @include laptop
@@ -90,11 +87,10 @@ export default {
 
     &:hover
       transform: scale(1)
-      background: transparent radial-gradient(circle, transparent 1%, rgba($aqua-blue, 0.1) 1%) center/15000%
 
       &::before, &::after
         opacity: 0
-        transition: all ease-in-out .3s
+        transition: all .3s ease-in-out
 
       &::before
         left: -20%
@@ -108,8 +104,8 @@ export default {
       background-color: rgba($aqua-blue, 0.5)
 
   &--active
-    // max-height: 100%
-    animation: test .5s linear .2s forwards
+    max-height: 100%
+    animation: max-height .5s linear .5s
 
     #{ $self }
 
@@ -122,21 +118,29 @@ export default {
       &_card
         animation: card-in .5s linear .5s forwards
 
-  &--disactive
-    max-height: 0
-    pointer-events: none
-    color: transparent
+        &::after
+          transition: all .5s ease-in-out 1s
+          border: 1px solid rgba($black, 0)
+          background-color: rgba($black, 0)
 
-@keyframes test
-  0%
-  100%
-    max-height: 100%
+  &--disactive
+    opacity: 0
+    max-height: 0
+    color: transparent
+    pointer-events: none
+    transition: opacity .2s ease-in-out, max-height .3s ease-in-out .2s
 
 @keyframes card-in
-  0%
+  // 50%
+  //   width: 80%
+  //   height: 30vh
+  //   visibility: visible
+  //   background: rgba($black, 0.9)
+  //   border: 1px solid rgba($black, 0.9)
+
   100%
+    width: 80%
     height: 30vh
-    margin: 2vh 0
-    visibility: visible
-    background: rgba($black,0.5)
+    // visibility: visible
+    background: rgba($black, 0.5)
 </style>
