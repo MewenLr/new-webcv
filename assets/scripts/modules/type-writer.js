@@ -8,7 +8,7 @@ export default {
       } else {
         setTimeout(() => {
           const caret = document.querySelector('.caret')
-          caret.parentNode.removeChild(caret)
+          if (caret) caret.parentNode.removeChild(caret)
         }, 500)
       }
     },

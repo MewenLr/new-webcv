@@ -211,8 +211,10 @@ export default {
   transform-origin: center
 
   // &:nth-child(even)
+  //   opacity: .5
   //   animation: rotating 5s linear infinite
 
   // &:nth-child(odd)
+  //   opacity: .8
   //   animation: rotating 10s linear infinite
 </style>

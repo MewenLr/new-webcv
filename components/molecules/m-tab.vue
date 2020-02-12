@@ -101,7 +101,7 @@ export default {
     &:active
       background-size: 100%
       transition: background 0s
-      background-color: rgba($aqua-blue, 0.5)
+      background-color: rgba($aqua-blue, .5)
 
   &--active
     max-height: 100%
@@ -116,12 +116,17 @@ export default {
           display: none
 
       &_card
-        animation: card-in .5s linear .5s forwards
+        width: 80%
+        height: 30vh
+        background: rgba($black, .5)
+        transition: all .5s linear .5s
 
-        &::after
-          transition: all .5s ease-in-out 1s
-          border: 1px solid rgba($black, 0)
-          background-color: rgba($black, 0)
+        .card_text
+
+          &::after
+            background: rgba($black, 0)
+            border: 1px solid transparent
+            transition: all .5s linear .8s
 
   &--disactive
     opacity: 0
@@ -129,18 +134,4 @@ export default {
     color: transparent
     pointer-events: none
     transition: opacity .2s ease-in-out, max-height .3s ease-in-out .2s
-
-@keyframes card-in
-  // 50%
-  //   width: 80%
-  //   height: 30vh
-  //   visibility: visible
-  //   background: rgba($black, 0.9)
-  //   border: 1px solid rgba($black, 0.9)
-
-  100%
-    width: 80%
-    height: 30vh
-    // visibility: visible
-    background: rgba($black, 0.5)
 </style>

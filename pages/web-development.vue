@@ -33,7 +33,6 @@ export default {
   height: 100vh
   color: $white
   display: flex
-  overflow: hidden
   position: relative
   flex-direction: column
 

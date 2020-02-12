@@ -73,7 +73,7 @@ export default {
 
       &::first-letter
         color: $aqua-blue
-        // text-shadow: 2px 2px 15px $aqua-blue
+        text-shadow: 2px 2px 15px $aqua-blue
 
   &_tabs
     width: 100%
