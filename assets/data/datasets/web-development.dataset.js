@@ -1,6 +1,7 @@
 export default {
   data () {
     return {
+      title: '<span class="letter-highlighted">W</span>eb <span class="letter-highlighted">D</span>evelopment',
       tabs: [
         {
           name: 'Frameworks Js',

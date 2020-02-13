@@ -20,8 +20,8 @@ export default {
 .subtitle
   padding: 1vh 2vh
   position: relative
-  border: 2px solid transparent
-  transition: all .5s ease-in-out
+  border: $border-m transparent
+  transition: all $duration-m ease-in-out
   @include mm-vw(font-size, 5, $tablet, $desktop)
 
   @include laptop
@@ -33,27 +33,27 @@ export default {
     content: ''
     position: absolute
     background: transparent
-    border: 2px solid transparent
+    border: $border-m transparent
 
   &::before
     top: -2px
     left: -2px
 
   &::after
-    bottom: -2px
     right: -2px
+    bottom: -2px
 
   &--disactive
 
     &:hover
-      border: 2px solid $aqua-blue
+      border: $border-m $aqua-blue
       transition: border 1.5s ease-in-out
 
       &::before
-        animation: border-top-right .5s linear forwards
+        animation: border-top-right $duration-m linear forwards
 
       &::after
-        animation: border-bottom-left .5s linear forwards
+        animation: border-bottom-left $duration-m linear forwards
 
   &--active
 
@@ -62,10 +62,10 @@ export default {
       height: 100%
 
     &::before
-      border-top: 2px solid $aqua-blue
-      border-right: 2px solid $aqua-blue
+      border-top: $border-m $aqua-blue
+      border-right: $border-m $aqua-blue
 
     &::after
-      border-bottom: 2px solid $aqua-blue
-      border-left: 2px solid $aqua-blue
+      border-left: $border-m $aqua-blue
+      border-bottom: $border-m $aqua-blue
 </style>

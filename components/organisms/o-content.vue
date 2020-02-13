@@ -1,7 +1,7 @@
 <template lang='pug'>
   .content
     .content_head
-      h1.content_head_title {{ title }}
+      h1.content_head_title(v-html="title")
     .content_tabs
       m-tab.content_tabs_tab(
         v-for="(tab, i) in tabs"
@@ -55,7 +55,7 @@ export default {
     text-align: center
     flex-direction: column
     justify-content: flex-end
-    font-family: Blanka, roboto
+    font-family: blanka, roboto
 
     @include laptop
       height: 45vh
@@ -70,10 +70,6 @@ export default {
 
       @include widescreen
         @include mm-vw(font-size, 7, $tablet, $desktop)
-
-      &::first-letter
-        color: $aqua-blue
-        text-shadow: 2px 2px 15px $aqua-blue
 
   &_tabs
     width: 100%

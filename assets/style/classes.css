@@ -6,3 +6,7 @@
 .disappear {
   display: none;
 }
+
+.letter-highlighted {
+  color: #86d2df;
+}

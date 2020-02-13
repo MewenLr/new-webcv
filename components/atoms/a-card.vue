@@ -1,7 +1,10 @@
 <template lang='pug'>
-  .card
-    .card_text
-      p(ref='cardText')
+  .card(:class=`{
+    'card--active': active,
+    'card--disactive': active,
+  }`)
+    .card_frame
+      p.card_frame_text(ref='cardText')
 </template>
 
 <script>
@@ -11,8 +14,8 @@ export default {
   name: 'ACard',
   mixins: [TypeWriter],
   props: {
-    paragraph: { type: String, required: true },
     active: { type: Boolean, required: true },
+    paragraph: { type: String, required: true },
   },
   watch: {
     active (newVal) {
@@ -25,23 +28,20 @@ export default {
 
 <style lang='sass'>
 .card
+  $self: &
   width: 0
-  height: 0
+  min-height: 0
   margin: 2vh 0 0 0
   position: relative
-  border-radius: 5px
   overflow: hidden auto
-  transition: all .2s linear
+  border-radius: $radius-m
   background: rgba($black, 0)
+  transition: all $duration-xs linear
 
-  &_text
+  &_frame
     width: 100%
     height: 100%
     font-family: monospace
-    @include mm-vw(font-size, 2, $laptop, $desktop)
-
-    @include laptop
-      @include mm-vw(font-size, 1.8, $tablet, $desktop)
 
     &::after
       top: 0
@@ -49,30 +49,30 @@ export default {
       content: ''
       z-index: -1
       position: absolute
-      border-radius: 5px
-      border: 1px solid black
       width: calc(100% - 2px)
       height: calc(100% - 2px)
+      border: $border-s $black
+      border-radius: $radius-m
       transition: all 1s linear
       background: rgba($black, .8)
 
-    p
-     padding: 4% 5%
+    &_text
+      padding: 4% 5%
+      @include mm-vw(font-size, 1.9, $laptop, $desktop)
 
-::-webkit-scrollbar
-  width: 10px
-  position: relative
+      @include laptop
+        @include mm-vw(font-size, 1.8, $tablet, $desktop)
 
-::-webkit-scrollbar-track
-  border-radius: 5px
-  background: transparent
+  &--active
+    width: 80%
+    min-height: 30vh
+    background: rgba($black, .5)
+    transition: all $duration-m linear $duration-m
 
-::-webkit-scrollbar-thumb
-  background: rgba(#ccc, .5)
-  border-radius: 15px
-  border: 2px solid rgba($black, .8)
+    #{ $self }_frame
 
-::-webkit-scrollbar-thumb:hover
-  background: rgba(#ccc, 1)
-  border: 2px solid rgba($black, .9)
+      &::after
+        background: rgba($black, 0)
+        border: $border-s transparent
+        transition: all $duration-m linear $duration-xl
 </style>

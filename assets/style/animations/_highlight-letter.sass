@@ -1,0 +1,18 @@
+@import '~/assets/style/tokens/_color.sass'
+
+@keyframes highlight-letter
+  20%
+    color: $light-blue
+    text-shadow: 2px 2px 15px $aqua-blue
+  30%
+    color: $aqua-blue
+    text-shadow: none
+  50%
+    color: $light-blue
+    text-shadow: 2px 2px 15px $aqua-blue
+  90%
+    color: $aqua-blue
+    text-shadow: none
+
+.letter-highlighted--active
+  animation: highlight-letter 2s linear
