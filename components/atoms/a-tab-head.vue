@@ -1,28 +1,25 @@
 <template lang='pug'>
   .tab-head(
-    :class=`{
-      'tab-head--active': active,
-      'tab-head--disactive': active,
-    }`
+    :class="{ 'tab-head--active': tabActive }"
     @click="clickTab"
   )
-    a-subtitle.tab-head_subtitle(
-      :name="name"
-      :active="active"
-    )
+    a-subtitle.tab-head_subtitle(:index="index")
+      | {{ name }}
 </template>
 
 <script>
 import ASubtitle from '@/components/atoms/a-subtitle'
+import tabActiveMix from '@/assets/scripts/mixins/tab-active'
 
 export default {
   name: 'ATabHead',
   components: {
     ASubtitle,
   },
+  mixins: [tabActiveMix],
   props: {
     name: { type: String, required: true },
-    active: { type: Boolean, required: true },
+    index: { type: Number, required: true },
   },
   methods: {
     clickTab () {
@@ -34,6 +31,7 @@ export default {
 
 <style lang='sass'>
 .tab-head
+  color: #eee
   display: flex
   cursor: pointer
   position: relative
@@ -61,6 +59,7 @@ export default {
     right: -2vw
 
   &:hover
+    color: $white
     transform: scale(1)
 
     &::before, &::after
@@ -79,6 +78,7 @@ export default {
     background-color: rgba($aqua-blue, .5)
 
   &--active
+    color: $white
     transform: scale(1)
 
     &::before, &::after

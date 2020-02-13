@@ -8,8 +8,6 @@
         :key="tab.name"
         :tab="tab"
         :index="i"
-        :indexActive="indexActive"
-        @clickTab="setIndexActive"
       )
 </template>
 
@@ -24,16 +22,6 @@ export default {
   props: {
     tabs: { type: Array, required: true },
     title: { type: String, required: true },
-  },
-  data () {
-    return {
-      indexActive: undefined,
-    }
-  },
-  methods: {
-    setIndexActive (index) {
-      this.indexActive = index
-    },
   },
 }
 </script>

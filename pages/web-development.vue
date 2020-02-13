@@ -15,7 +15,7 @@ import OContent from '@/components/organisms/o-content'
 import OBackground from '@/components/organisms/o-background'
 import OIllustration from '@/components/organisms/o-illustration'
 import dataset from '@/assets/data/datasets/web-development.dataset'
-// import hightlightLetter from '@/assets/data/mixins/highlight-letter'
+// import highlightLetterMix from '@/assets/scripts/mixins/highlight-letter'
 
 export default {
   name: 'WebDevelopment',
@@ -24,7 +24,7 @@ export default {
     OBackground,
     OIllustration,
   },
-  // mixins: [dataset, hightlightLetter],
+  // mixins: [dataset, highlightLetterMix],
   mixins: [dataset],
 }
 </script>

@@ -1,17 +1,19 @@
 <template lang='pug'>
   h2.subtitle(:class=`{
-    'subtitle--active': active,
-    'subtitle--disactive': !active,
-    }`)
-    | {{ name }}
+    'subtitle--active': tabActive,
+    'subtitle--disactive': !tabActive,
+  }`)
+    slot
 </template>
 
 <script>
+import tabActiveMix from '@/assets/scripts/mixins/tab-active'
+
 export default {
   name: 'ASubtitle',
+  mixins: [tabActiveMix],
   props: {
-    name: { type: String, required: true },
-    active: { type: Boolean, required: true },
+    index: { type: Number, required: true },
   },
 }
 </script>
@@ -43,18 +45,6 @@ export default {
     right: -2px
     bottom: -2px
 
-  &--disactive
-
-    &:hover
-      border: $border-m $aqua-blue
-      transition: border 1.5s ease-in-out
-
-      &::before
-        animation: border-top-right $duration-m linear forwards
-
-      &::after
-        animation: border-bottom-left $duration-m linear forwards
-
   &--active
 
     &::before, &::after
@@ -68,4 +58,16 @@ export default {
     &::after
       border-left: $border-m $aqua-blue
       border-bottom: $border-m $aqua-blue
+
+  &--disactive
+
+    &:hover
+      border: $border-m $aqua-blue
+      transition: border 1.5s ease-in-out
+
+      &::before
+        animation: border-top-right $duration-m linear forwards
+
+      &::after
+        animation: border-bottom-left $duration-m linear forwards
 </style>

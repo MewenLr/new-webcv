@@ -1,26 +1,29 @@
 <template lang='pug'>
-  .card(:class=`{
-    'card--active': active,
-    'card--disactive': active,
-  }`)
+  .card(:class="{ 'card--active': tabActive }")
     .card_frame
       p.card_frame_text(ref='cardText')
 </template>
 
 <script>
-import TypeWriter from '@/assets/scripts/modules/type-writer'
+import tabActiveMix from '@/assets/scripts/mixins/tab-active'
+import typeWriterMix from '@/assets/scripts/mixins/type-writer'
 
 export default {
   name: 'ACard',
-  mixins: [TypeWriter],
+  mixins: [typeWriterMix, tabActiveMix],
   props: {
-    active: { type: Boolean, required: true },
+    index: { type: Number, required: true },
     paragraph: { type: String, required: true },
   },
   watch: {
-    active (newVal) {
-      if (newVal) setTimeout(() => this.typeWriter(this.$refs.cardText, this.paragraph), 1000)
-      if (!newVal) this.$refs.cardText.innerHTML = ''
+    tabActive (newVal) {
+      if (newVal) {
+        this.shouldContinue = true
+        setTimeout(() => this.typeWriter(this.$refs.cardText, this.paragraph), 1000)
+      } else {
+        this.shouldContinue = false
+        this.$refs.cardText.innerHTML = ''
+      }
     },
   },
 }

@@ -5,18 +5,21 @@
   }`)
     a-tab-head(
       @clickTab="clickTab"
+      :index="index"
       :name="tab.name"
-      :active="tabActive"
     )
     a-card.tab_card(
+      :index="index"
       :paragraph="tab.paragraph"
-      :active="tabActive"
     )
 </template>
 
 <script>
+import types from '@/store/mutation-types'
 import ACard from '@/components/atoms/a-card'
 import ATabHead from '@/components/atoms/a-tab-head'
+import tabActiveMix from '@/assets/scripts/mixins/tab-active'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'MTab',
@@ -24,25 +27,28 @@ export default {
     ACard,
     ATabHead,
   },
+  mixins: [tabActiveMix],
   props: {
     tab: { type: Object, required: true },
     index: { type: Number, required: true },
-    indexActive: { type: Number, default: undefined },
   },
   data () {
     return {
-      tabActive: false,
+      toggleTab: false,
     }
   },
   computed: {
     tabDisactive () {
-      return this.indexActive !== undefined && !this.tabActive
+      return this.stTabActive !== undefined && this.stTabActive !== this.index
     },
   },
   methods: {
+    ...mapMutations({
+      mutTabActive: types.TAB_ACTIVE,
+    }),
     clickTab () {
-      this.tabActive = !this.tabActive
-      this.tabActive ? this.$emit('clickTab', this.index) : this.$emit('clickTab', undefined)
+      this.toggleTab = !this.toggleTab
+      this.mutTabActive(this.toggleTab ? this.index : undefined)
     },
   },
 }
