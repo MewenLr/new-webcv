@@ -28,7 +28,7 @@ export default {
 
 <style lang='sass'>
 .content
-  height: 65vh
+  height: 60vh
   width: 100vw
   display: flex
   align-items: center

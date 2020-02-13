@@ -38,4 +38,5 @@ export default {
       width: 100%
       height: auto
       max-width: 750px
+      margin-left: 7.5%
 </style>

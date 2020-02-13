@@ -195,7 +195,7 @@ export default {
   width: 100vw
   height: 95vh
   position: absolute
-  // animation: rotating 200s linear infinite reverse
+  // animation: rotating 250s linear infinite reverse
 
   @include tablet
     top: -35vh * 2
@@ -212,9 +212,9 @@ export default {
 
   // &:nth-child(even)
   //   opacity: .5
-  //   animation: rotating 5s linear infinite
+  //   animation: rotating 7s linear infinite
 
   // &:nth-child(odd)
   //   opacity: .8
-  //   animation: rotating 10s linear infinite
+  //   animation: rotating 12s linear infinite
 </style>
