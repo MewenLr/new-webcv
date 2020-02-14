@@ -34,8 +34,8 @@ export default {
     flex-direction: column
 
   &_dot
-    width: 2vh
-    height: 2vh
+    width: 1.5vh
+    height: 1.5vh
     cursor: pointer
     margin-left: 3vw
     border-radius: 100%
@@ -44,9 +44,9 @@ export default {
 
     @include laptop
       margin-left: 1.5vw
-      @include mm-vw(width, 2, $tablet, $desktop)
-      @include mm-vw(height, 2, $tablet, $desktop)
-      @include mm-vw(margin-top, 2.5, $tablet, $desktop)
+      @include mm-vw(width, 1.5, $tablet, $desktop)
+      @include mm-vw(height, 1.5, $tablet, $desktop)
+      @include mm-vw(margin-top, 2, $tablet, $desktop)
 
     &:first-child
       margin-top: 0
@@ -64,6 +64,6 @@ export default {
       box-shadow: 0 0 15px rgba($light-blue, .3)
 
     &--active
-      border: 2px solid rgba($aqua-blue, .9)
-      background-color: rgba($aqua-blue, .6)
+      border: 2px solid rgba($aqua-blue, 0)
+      background-color: rgba($aqua-blue, .8)
 </style>
