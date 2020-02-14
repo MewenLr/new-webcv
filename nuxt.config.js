@@ -25,6 +25,8 @@ export default {
     ],
   },
   plugins: [
+    '~/assets/scripts/directives/scroll.js',
+    '~/assets/scripts/directives/pointers.js',
   ],
   buildModules: [
     '@nuxtjs/eslint-module',

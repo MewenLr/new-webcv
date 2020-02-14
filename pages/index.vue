@@ -1,13 +1,19 @@
 <template lang='pug'>
-  .container
+  .container(
+    v-pointerdown="startDrag"
+    v-pointermove="doDrag"
+    v-pointerup="stopDrag"
+  )
     o-background
-    o-scroller(:page="0")
+    o-scroller(:page="stPageActive")
     nuxt-child.container_child
 </template>
 
 <script>
+import types from '@/store/mutation-types'
 import OScroller from '@/components/organisms/o-scroller'
 import OBackground from '@/components/organisms/o-background'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'Container',
@@ -19,7 +25,6 @@ export default {
     return {
       dragging: false,
       startPoint: undefined,
-      pageActive: 0,
       routes: [
         {
           index: 0,
@@ -36,30 +41,23 @@ export default {
       ],
     }
   },
-  mounted () {
-    window.addEventListener('pointerdown', this.startDrag)
-    window.addEventListener('pointermove', this.doDrag)
-    window.addEventListener('pointerup', this.stopDrag)
-  },
-  destroyed () {
-    window.removeEventListener('pointerdown', this.startDrag)
-    window.removeEventListener('pointermove', this.doDrag)
-    window.removeEventListener('pointerup', this.stopDrag)
+  computed: {
+    ...mapState({
+      stPageActive: state => state.stPageActive,
+    }),
   },
   methods: {
-    startDrag (event) {
+    ...mapMutations({
+      mutTabActive: types.TAB_ACTIVE,
+      mutPageActive: types.PAGE_ACTIVE,
+    }),
+    startDrag (evt) {
       this.dragging = true
-      this.startPoint = event.clientX
+      this.startPoint = evt.clientX
     },
-    stopDrag (event) {
-      this.dragging = false
-      this.startPoint = undefined
-      const el = document.querySelector('.container_child')
-      el.classList.remove('container_child--slide-right', 'container_child--slide-left')
-    },
-    doDrag (event) {
+    doDrag (evt) {
       if (this.dragging) {
-        const gap = this.startPoint - event.clientX
+        const gap = this.startPoint - evt.clientX
         const el = document.querySelector('.container_child')
         if (gap >= 0) {
           el.classList.add('container_child--slide-right')
@@ -68,15 +66,27 @@ export default {
           el.classList.add('container_child--slide-left')
           el.classList.remove('container_child--slide-right')
         }
-        const lock = window.innerWidth * 0.05
-        if (gap > lock) {
-          this.$router.push({ path: this.routes[this.pageActive].path })
-          this.pageActive += 1
-        } else if ((gap * -1) > lock) {
-          this.$router.push({ path: this.routes[this.pageActive].path })
-          this.pageActive -= 1
-        }
       }
+    },
+    stopDrag (evt) {
+      const gap = this.startPoint - evt.clientX
+      const lock = window.innerWidth * 0.03
+      if (gap > lock) {
+        const nextPage = ((this.stPageActive + 1) === this.routes.length) ? (this.routes.length - 1) : (this.stPageActive + 1)
+        this.mutPageActive(nextPage)
+        this.mutTabActive(undefined)
+        this.$router.push({ path: this.routes[this.stPageActive].path })
+      } else if ((gap * -1) > lock) {
+        const previousPage = ((this.stPageActive - 1) < 0) ? 0 : (this.stPageActive - 1)
+        this.mutPageActive(previousPage)
+        this.mutTabActive(undefined)
+        this.$router.push({ path: this.routes[this.stPageActive].path })
+      }
+
+      this.dragging = false
+      this.startPoint = undefined
+      const el = document.querySelector('.container_child')
+      el.classList.remove('container_child--slide-right', 'container_child--slide-left')
     },
   },
 }
@@ -90,11 +100,14 @@ export default {
   position: relative
 
   &_child
-    transition: all $duration-xs ease-in-out
+    transition: all $duration-s linear
+
+    &--slide-left, &--slide-right
+      transition: all $duration-xs linear
 
     &--slide-left
-      transform: translate(2rem, 0)
+      transform: translate(3rem, 0)
 
     &--slide-right
-      transform: translate(-2rem, 0)
+      transform: translate(-3rem, 0)
 </style>

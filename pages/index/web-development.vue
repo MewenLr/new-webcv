@@ -1,6 +1,5 @@
 <template lang='pug'>
   .web-development
-    nuxt-link(to="/devops?page=2" style="color: white") Devops
     o-illustration.web-development_illustration
       template
         img(src='@/static/images/svg/computer.svg' alt='illustration computer hovering')
