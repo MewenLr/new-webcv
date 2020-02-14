@@ -1,7 +1,7 @@
 <template lang='pug'>
   .tab-head(
     :class="{ 'tab-head--active': tabActive }"
-    @click="clickTab"
+    @click="$emit('clickTab')"
   )
     a-subtitle.tab-head_subtitle(:index="index")
       | {{ name }}
@@ -20,11 +20,6 @@ export default {
   props: {
     name: { type: String, required: true },
     index: { type: Number, required: true },
-  },
-  methods: {
-    clickTab () {
-      this.$emit('clickTab')
-    },
   },
 }
 </script>

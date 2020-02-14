@@ -21,7 +21,9 @@ export default {
   width: 100vw
   height: 35vh
   display: flex
+  user-select: none
   align-items: center
+  pointer-events: none
   justify-content: center
 
   @include laptop

@@ -1,9 +1,6 @@
 <template lang='pug'>
   .devops
     nuxt-link(to="/web-development?page=1" style="color: white") Web Dev
-    //- nuxt-link(to="/web-development") Accueil
-    //- o-background
-    //- o-scroller(:page="1")
     o-illustration.devops_illustration
       template
         img(src='@/static/images/svg/computer.svg' alt='illustration computer hovering')
@@ -15,27 +12,19 @@
 
 <script>
 import OContent from '@/components/organisms/o-content'
-// import OScroller from '@/components/organisms/o-scroller'
 import dataset from '@/assets/data/datasets/devops.dataset'
-// import OBackground from '@/components/organisms/o-background'
 import OIllustration from '@/components/organisms/o-illustration'
 import highlightLetterMix from '@/assets/scripts/mixins/highlight-letter'
+import slideLeftRight from '@/assets/scripts/transitions/slide-left-right'
 
 export default {
   name: 'Devops',
   components: {
     OContent,
-    // OScroller,
-    // OBackground,
     OIllustration,
   },
   mixins: [dataset, highlightLetterMix],
-  // transition: 'slide-left',
-  transition: (to, from) => {
-    if (!from) return 'slide-left'
-    return +to.query.page < +from.query.page ? 'slide-right' : 'slide-left'
-  },
-  // mixins: [dataset],
+  transition: slideLeftRight,
 }
 </script>
 
@@ -43,9 +32,7 @@ export default {
 .devops
   width: 100vw
   height: 100vh
-  color: $white
   display: flex
-  overflow: hidden
   position: relative
   flex-direction: column
 
