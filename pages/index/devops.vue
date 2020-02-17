@@ -2,7 +2,7 @@
   .devops
     o-illustration.devops_illustration
       template
-        img(src='@/static/images/svg/computer.svg' alt='illustration computer hovering')
+        img(src='@/static/images/svg/devops.svg' alt='illustration of hovering loop')
     o-content.devops_content(
       :tabs="tabs"
       :title="title"
