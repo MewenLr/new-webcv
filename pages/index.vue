@@ -7,6 +7,8 @@
     o-background
     o-scroller(:page="stPageActive")
     nuxt-child.container_child
+    .container_gradient-dark
+    .container_gradient-light
 </template>
 
 <script>
@@ -94,10 +96,12 @@ export default {
 
 <style lang='sass'>
 .container
+  z-index: -5
   width: 100vw
   height: 100vh
   overflow: hidden
   position: relative
+  background-color: $regal-blue
 
   &_child
     transition: all $duration-s linear
@@ -110,4 +114,28 @@ export default {
 
     &--slide-right
       transform: translate(-3rem, 0)
+
+  &_gradient-dark
+    top: 55%
+    width: 80vw
+    z-index: -4
+    right: -15vw
+    height: 80vw
+    opacity: .8
+    position: fixed
+    border-radius: 100%
+    transform: translateY(-50%)
+    background: radial-gradient(circle, rgba(0,14,20,1) 0%, rgba(0,29,43,.75) 20%, rgba(0,63,92,0) 50%)
+
+  &_gradient-light
+    top: 60%
+    z-index: -5
+    opacity: .5
+    position: fixed
+    right: -55vw
+    width: 160vw
+    height: 160vw
+    transform: translateY(-50%)
+    background-color: $regal-blue
+    background: radial-gradient(circle, rgba(0,63,92,0) 60%, rgba(178,252,255,1) 100%)
 </style>

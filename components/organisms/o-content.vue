@@ -28,6 +28,8 @@ export default {
 
 <style lang='sass'>
 .content
+  position: relative
+  z-index: 0
   height: 60vh
   width: 100vw
   display: flex

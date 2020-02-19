@@ -191,11 +191,12 @@ export default {
 .squares
   left: 0
   top: -35vh
-  z-index: -4
+  z-index: 1
   width: 100vw
   height: 95vh
   position: absolute
-  // animation: rotating 250s linear infinite reverse
+  pointer-events: none
+  animation: rotating 250s linear infinite reverse
 
   @include tablet
     top: -35vh * 2
@@ -210,11 +211,10 @@ export default {
   transform-box: fill-box
   transform-origin: center
 
-  // &:nth-child(even)
-  //   opacity: .5
-  //   animation: rotating 7s linear infinite
+  &:nth-child(even)
+    animation: rotating 7s linear infinite
 
-  // &:nth-child(odd)
-  //   opacity: .8
-  //   animation: rotating 12s linear infinite
+  &:nth-child(odd)
+    opacity: .8
+    animation: rotating 12s linear infinite
 </style>

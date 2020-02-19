@@ -5,6 +5,11 @@ body {
   font-family: roboto, sans-serif;
 }
 
+body, #__layout, #__nuxt {
+  z-index: -6;
+  position: relative;
+}
+
 h1, h2, h3, h4, p {
   margin: 0;
 }

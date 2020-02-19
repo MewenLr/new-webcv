@@ -191,7 +191,7 @@ export default {
 .squares2
   left: 0
   top: -35vh
-  z-index: -4
+  z-index: -2
   width: 100vw
   height: 95vh
   position: absolute

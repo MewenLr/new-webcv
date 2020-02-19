@@ -16,7 +16,6 @@
 .slide-right-enter-active,
 .slide-right-leave-active {
   overflow: hidden;
-  /* transition-duration: .5s; */
   transition-property: height, opacity, transform;
   transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
 }
