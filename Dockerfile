@@ -1,12 +1,11 @@
-FROM node:12-alpine
+FROM node:lts-alpine
 
-RUN mkdir /app
 WORKDIR /app
-COPY . /app
+COPY package*.json ./
 RUN npm install
+COPY . .
 RUN npm rebuild node-sass
 RUN npm run build
 EXPOSE 3000
-ENV HOST 0.0.0.0
 
 CMD [ "npm", "start" ]
