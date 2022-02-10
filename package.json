@@ -27,7 +27,7 @@
     "eslint": "^6.1.0",
     "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-i18n-json": "^2.4.3",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "nodemon": "^1.19.4",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
